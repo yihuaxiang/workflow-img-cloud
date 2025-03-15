@@ -116,11 +116,9 @@ def upload_base64_to_api(base64_data, content_type):
             
         # 尝试使用 data 参数和 base64 键名
         data = {'base64': base64_data}
-        print(f"DEBUG - Request data: {data}")
         response = requests.post(API_URL, data=data)
         
         if response.status_code == 200:
-            print(f"DEBUG - Response: {response.text}")
             return {"success": True, "data": {"url": response.text.strip()}}
         else:
             # 尝试使用 json 参数
@@ -176,7 +174,22 @@ def main():
                 url = result["data"]["url"]
                 # 复制 URL 到剪贴板
                 subprocess.run(['osascript', '-e', f'set the clipboard to "{url}"'])
-                notify("Upload Successful", f"URL copied to clipboard: {url}")
+                # 使用 URL 作为 arg 参数，这样 Alfred 可以直接使用它
+                output = {
+                    "items": [
+                        {
+                            "title": "Upload Successful",
+                            "subtitle": f"URL copied to clipboard: {url}",
+                            "arg": url,
+                            "text": {
+                                "copy": url,
+                                "largetype": url
+                            }
+                        }
+                    ]
+                }
+                print(json.dumps(output, ensure_ascii=False))
+                sys.stdout.flush()
             else:
                 notify("Upload Successful", "Content uploaded successfully")
     except Exception as e:

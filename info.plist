@@ -34,19 +34,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>run-script</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>notification</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 	</dict>
 	<key>createdby</key>
 	<string>User</string>
@@ -110,25 +97,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
+				<key>autopaste</key>
 				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>python3 upload_clipboard.py</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
 			<string>run-script</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -153,27 +136,6 @@
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{var:message}</string>
-				<key>title</key>
-				<string>{var:title}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>notification</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>This workflow uploads the content of your clipboard (image or text) to a specified API endpoint.
@@ -185,16 +147,9 @@ To use:
 
 Requirements:
 - Python 3
-- requests library (pip3 install requests)</string>
+- All required libraries are included in the workflow</string>
 	<key>uidata</key>
 	<dict>
-		<key>notification</key>
-		<dict>
-			<key>xpos</key>
-			<integer>530</integer>
-			<key>ypos</key>
-			<integer>200</integer>
-		</dict>
 		<key>run-script</key>
 		<dict>
 			<key>xpos</key>
